@@ -53,7 +53,7 @@ def main():
                 return
             for shot in shots:
                 if asteroid.collision_check(shot):
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
 
         # Set FPS 
