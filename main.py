@@ -21,11 +21,11 @@ def main():
     # Create containers for game objects
     updateable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    asteroid = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
     # Add containers to game object classes 
     Player.containers = (updateable, drawable)
-    Asteroid.containers = (asteroid, updateable, drawable)
+    Asteroid.containers = (asteroids, updateable, drawable)
     AsteroidField.containers = (updateable)
 
     # Init game objects
@@ -42,6 +42,12 @@ def main():
         updateable.update(dt)
         for object in drawable:
             object.draw(screen)
+
+        # Check for collisions:
+        for asteroid in asteroids:
+            if asteroid.collision_check(player):
+                print("Game Over!")
+                return
 
         # Set FPS 
         pygame.display.flip()
